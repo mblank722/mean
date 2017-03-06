@@ -1,9 +1,5 @@
-var food = "Chicken";
-function eat() {
-  food = "half-chicken";
-  console.log(food);
-  var food = "gone";       // CAREFUL!
-  console.log(food);
+var new_word = "NEW!";
+function lastFunc() {
+  new_word = "old";
 }
-eat();
-console.log(food);
+console.log(new_word);
