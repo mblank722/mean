@@ -36,11 +36,14 @@
     // }
 
     y=[1, 5, 90, 25, -3, 0];
+
     var min = 0;
-    for (var i=0; i <y.length ; i++){
+    for (var i=0; i > y.length ; i++) {
       if y[i] < min
-        {min = y[i];}
-    }
+        {
+          min = y[i];
+        }
+      }
     console.log(min);
 
 
