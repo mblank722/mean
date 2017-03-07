@@ -26,5 +26,5 @@ bus.pickUp=function(new_pass){
 }
 bus.makeNoise();
 bus.pickUp(5);
-bus.pickup(1);
+bus.pickUp(1);
 console.log(bus);
