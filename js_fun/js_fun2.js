@@ -154,7 +154,7 @@ var mathObject ={
 // crawl - have it alert for example “{{your name}} is crawling” and increase distance_traveled by 1
 
 var person = {
-  name:"Mitchell"
+  name:"Jay"
   ,distance_traveled: 0
   , say_name:function(){console.log("name: " + this.name)}
   , say_something:function(in_say){console.log(this.name + ", says "+ in_say)}

@@ -1,73 +1,64 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <script src='main.js'>
 
-    // Go through each value in the array x, where x = [3,5,"Dojo", "rocks", "Michael", "Sensei"]. Log each value.
-
-    // Add a new value (100) in the array x using a push method.
-
-    // Add a new array ["hello", "world", "JavaScript is Fun"] to variable x. Log x in the console and analyze how x looks now.
-
-    // Create a simple for loop that sums all the numbers between 1 to 500. Have console log the final sum.
-
-    // Write a loop that will go through the array [1, 5, 90, 25, -3, 0], find the minimum value, and then print it
-
-    // Write a loop that will go through the array [1, 5, 90, 25, -3, 0], find the average of all of the values, and then print it
-
-    // var x = [3,5,"Dojo", "rocks", "Michael", "Sensei"];
-    //
-    //
-    // for (var i=0; i < x.length; i++){
-    //   console.log(x[i]);
-    // }
-    //
-    // x.push(100);
-    //
-    // for (var i=0; i < x.length; i++){
-    //   console.log(x[i]);
-    // }
-    //
-    // // x = x + ["hello", "world", "JavaScript is Fun"];
-    // //
-    // // for (var i=0; i < x.length; i++){
-    // //   console.log(x[i]);
-    // // }
-    //
-    // y=[1, 5, 90, 25, -3, 0];
-    //
-    // var min = 0;
-    // for (var i=0; i < y.length ; i++) {
-    //   if (y[i] < min)
-    //     {
-    //
-    //       min = y[i];
-    //       // console.log('i: ', i);
-    //       // console.log('min: ', min);
-    //       // console.log('y[i]: ', y[i]);
-    //     }
-    //   }
-    // console.log(min);
-    //
-    // y=[1, 5, 90, 25, -3, 0];
-    //
-    // var sum = 0;
-    // for (var i=0; i < y.length ; i++) {
-    //     sum += y[i];
-    //       // console.log('i: ', i);
-    //       // console.log('min: ', min);
-    //       // console.log('y[i]: ', y[i]);
-    //   }
-    // var avg = sum/y.length
-    // console.log(avg);
-    //
+<!-- Bug List:
+The last character in the word doesn’t show up! The spaces in the words do not appear correctly, i.e., the cursor does not shift to the right when encountering a space, instead, lingering on the previous character.
+Hints:
+Slow the interval down non-breaking space
+Note:  At this point, you're not expected to be able to create something like this from scratch, so don’t worry if the code seems daunting at first. By the end of the track, you will be able to build projects like this from scratch. -->
 
 
-    </script>
-    <title></title>
-  </head>
-  <body>
+<head>
+	<title>Javascript Demo</title>
+	<style>
+		body {
+			background-color:black;
+			font-family: monospace;
+			color:white;
+			font-size:50px;
+			text-align: center;
+			margin-top:20%;
+		}
 
-  </body>
+		#magic{
+			color: #777;
+			border-right: 1px solid #777;
+			padding-right: 7px;
+			display: inline;
+		}
+	</style>
+</head>
+<body>
+
+	Coding is <div id="magic"></div>
+
+	<script>
+
+		var words = ["fun", "exciting", "about not giving up", "being helpful", "being open", "what I learned at CodingDojo!"],
+		// var words = ["fun", "exciting", "about&nbspnot&nbspgiving&nbspup", "being&nbsphelpful", "being&nbspopen", "what&nbspI&nbsplearned&nbspat&nbspCodingDojo!"],
+			el = document.getElementById('magic'),
+			word_counter = 0,
+			character_counter = 0;
+
+		function updateText()
+		{
+			el.innerHTML = el.innerHTML+words[word_counter][character_counter++];
+			// if(character_counter == words[word_counter].length+)
+			if(character_counter == words[word_counter].length+1)
+			{
+				word_counter++; 	//choose a different word
+				character_counter = 0;	//start over with the first character of the word
+				el.innerHTML = '';  //set the html to be blank
+
+				//if we're displaying the last word, go back to the first word
+				if(word_counter == words.length)
+					word_counter = 0;
+			}
+		}
+
+		setInterval(updateText,800);
+
+	</script>
+
+</body>
+
 </html>
