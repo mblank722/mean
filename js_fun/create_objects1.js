@@ -25,7 +25,23 @@ function VehicleConstructor(name, numWheels, numPass) {
   }
   return vehicle;
 }
-vehicle1=VehicleConstructor('Bike',2,1);
-vehicle1.makeNoise=function(){console.log('ring, ring!')}
-vehicle1.makeNoise()
-console.log(vehicle1)
+schwinn=VehicleConstructor('Bike',2,1);
+schwinn.makeNoise=function(){console.log('ring, ring!')}
+schwinn.makeNoise()
+console.log(schwinn)
+
+accord=VehicleConstructor('Sedan',2,4);
+accord.makeNoise=function(){console.log('honk, honk!')}
+accord.makeNoise()
+console.log(accord)
+
+bus=VehicleConstructor('Bus',8,32);
+bus.makeNoise=function(){console.log('loud honk, honk!')}
+
+bus.pickUp=function(new_pass){var pass_cnt=0;
+  pass_cnt+=new_pass;
+  console.log('Passenger count: '+ pass_cnt)
+}
+bus.makeNoise()
+bus.pickUp(5)
+console.log(bus)
