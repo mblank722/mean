@@ -1,57 +1,178 @@
-// Basic: Make a function that can be used anywhere in your file and that when invoked will console.log('I am running!'); Give it the name runningLogger.
+// Turn the following problems from JS Fundamentals Part I into functions that take variable inputs
 //
-
-function runningLogger () {
-  console.log('I am running!')
-}
-// Basic: Make a function that is callable, has one parameter and multiplies the value of the parameter by 10 before returning the result. Give it the name multiplyByTen. Invoke it, passing it the argument 5.
-//
-
-function multiplyByTen (val) {
-  return val * 10;
-}
-multiplyByTen(5)
-
-// Basic: Write two functions (stringReturnOne and stringReturnTwo) that each return a different hard-coded string
-//
-function stringReturnOne () {
-    return 'string two'
+// Create a simples for loop that sums all the integers between x and y (inclusive). Have it console log the final sum.
+function sumFunc(start, end) {
+var sum = 0;
+for (var i=start; i <= end  ; i++) {
+    sum += i;
+  }
+  console.log(sum)
 }
 
-function stringReturnOne () {
-    return 'string two'
+// Write a loop that will go through an array, find the minimum value, and then return it
+
+
+y=[1, 5, 90, 25, -3, 0];
+
+function arrayMin(arr) {
+  var min = 0;
+  for (var i=0; i < arr.length ; i++) {
+    if (arr[i] < min){
+        min = y[i];
+        // console.log('i: ', i);
+        // console.log('min: ', min);
+        // console.log('y[i]: ', y[i]);
+    }
+  }
+  console.log('min: '+min);
+  return min;
+}
+// arrayMin(y);
+
+
+
+
+// Write a loop that will go through an array, find the average of all of the values, and then return it
+
+y=[1, 5, 90, 25, -3, 0];
+function arrayAvg() {
+  var sum = 0;
+  for (var i=0; i < y.length ; i++) {
+      sum += y[i];
+        // console.log('i: ', i);
+        // console.log('min: ', min);
+        // console.log('y[i]: ', y[i]);
+    }
+  var avg = sum/y.length
+  console.log(avg);
+  return (avg);
 }
 
-// Medium: Write a function named caller that has one parameter. If the argument provided to caller is a function (typeof may be useful), invoke the argument. Nothing is returned.
+// arrayAvg(y);
+
+
+
+
+// Rewrite these 3 as anonymous functions assigned to variables.
+// SUM:
+var sumFuncAnon = function (start, end) {
+  var sum = 0;
+  for (var i=start; i <= end  ; i++) {
+      sum += i;
+    }
+    console.log('Anon sum: ' + sum)
+}
+
+// min
+
+var arrayMinAnon = function (arr) {
+  var min = 0;
+  for (var i=0; i < arr.length ; i++) {
+    if (arr[i] < min){
+        min = y[i];
+        // console.log('i: ', i);
+        // console.log('min: ', min);
+        // console.log('y[i]: ', y[i]);
+    }
+  }
+  console.log('Anon min: '+ min);
+  return min;
+}
+
+y=[1, 5, 90, 25, -3, 0];
+// arrayMinAnon(y);
+
+// Average:
+y=[1, 5, 90, 25, -3, 0];
+var arrayAvgAnon = function () {
+  var sum = 0;
+  for (var i=0; i < y.length ; i++) {
+      sum += y[i];
+    }
+  var avg = sum/y.length
+  console.log('Anon Avg: ' +avg);
+  return (avg);
+}
+
+// arrayAvgAnon(y);
+
 //
-function caller(func0){
-  if (typeof func0 === 'function')
-    func0();
-  else {
-    console.log(func0)
+// Rewrite these as methods of an object
+var mathObject ={
+
+  sumFuncAnon:function (start, end) {
+    var sum = 0;
+    for (var i=start; i <= end  ; i++) {
+        sum += i;
+      }
+      console.log('Anon sum: ' + sum)
+  }
+,
+
+  arrayMinAnon:function (arr) {
+    var min = 0;
+    for (var i=0; i < arr.length ; i++) {
+      if (arr[i] < min){
+          min = y[i];
+          // console.log('i: ', i);
+          // console.log('min: ', min);
+          // console.log('y[i]: ', y[i]);
+      }
+    }
+    console.log('Anon min: '+ min);
+    return min;
+  }
+,
+
+  arrayAvgAnon:function () {
+    var sum = 0;
+    for (var i=0; i < y.length ; i++) {
+        sum += y[i];
+          // console.log('i: ', i);
+          // console.log('min: ', min);
+          // console.log('y[i]: ', y[i]);
+      }
+    var avg = sum/y.length
+    console.log('Anon Avg: ' +avg);
+    return (avg);
   }
 }
 
-caller(runningLogger);
-caller(4)
+// Create a JavaScript object called person with the following properties/methods
 
-// Medium: Write a function named myDoubleConsoleLog that has two parameters, if the arguments passed to the function are functions, console.log the value that each, when invoked, returns.
-//
+// Properties
+// name - set this as your own name
+// distance_traveled - set this initially as zero
 
-function myDoubleConsoleLog (func1, func2{
-  if (typeof func1 === 'function' && func2 === 'function')
-    console.log(func1());
-    console.log(func2());
+// Methods
+// say_name - should alert the object’s name property
+
+// say_something - have it accept a parameter. This function should then say for example “{{your name}} says ‘I am cool’” if you pass ‘I am cool’ as an argument to this method.
+
+// walk - have it alert for example “{{your name}} is walking” and increase distance_traveled by 3
+// run - have it alert for example “{{your name}} is running” and increase distance_traveled by 10
+// crawl - have it alert for example “{{your name}} is crawling” and increase distance_traveled by 1
+
+var person = {
+  name:"Mitchell"
+  ,distance_traveled: 0
+  , say_name:function(){console.log("name: " + this.name)}
+  , say_something:function(in_say){console.log(this.name + ", says "+ in_say)}
+  , walk:function(){
+      this.distance_traveled = this.distance_traveled + 3;
+      console.log(this.name + " is walking.");
+    }
+  , run:function(){
+      this.distance_traveled = this.distance_traveled + 10;
+      console.log(this.name + " is running.");
+    }
+  , crawl:function(){
+      this.distance_traveled = this.distance_traveled + 1;
+      console.log(this.name + " is crawling.")
+    }
 }
-
-myDoubleConsoleLog(runningLogger, multiplyByTen(9))
-// Hard: Write a function named caller2 that has one parameter. Have it console.log the string 'starting', wait 2 seconds, and then invokes the argument if the argument is a function. (setTimeout may be useful for this one.) The function should then console.log ‘ending?’ and return “interesting”. Invoke this function by passing it myDoubleConsoleLog.
-
-function caller2 (func3) {
-  console.log('starting');
-  setTimeout(caller(func3),6000);
-  console.log('ending')
-  return 'interesting'
-
-
-}
+person.say_name()
+person.say_something("test")
+person.walk()
+person.run()
+person.crawl()
