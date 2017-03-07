@@ -23,9 +23,10 @@ function VehicleConstructor(name, numWheels, numPass,speed) {
   };
   this.checkMiles = function(){
     display_distance_travelled();
-    self.makeNoise();
   };
 }
+
+
 schwinn=new VehicleConstructor('Bike',2,1,15);
 schwinn.makeNoise=function(){console.log('ring, ring!')};
 schwinn.move();
