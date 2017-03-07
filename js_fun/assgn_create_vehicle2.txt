@@ -20,9 +20,15 @@ Have the Vehicle constructor also take in a “speed”
 Store the speed as an attribute
 Create a private variable called distance_travelled that starts at 0
 
-Create a private method called updateDistanceTravelled that increments distance traveled by speed Add a method to the Vehicle called “move” that calls updateDistanceTravelled and then makeNoise Add a method called checkMiles that console.logs the distance_travelled
+Create a private method called updateDistanceTravelled that increments distance traveled by speed
+
+Add a method to the Vehicle called “move” that calls updateDistanceTravelled and then makeNoise
+
+Add a method called checkMiles that console.logs the distance_travelled
 Bonus: Use ES6 Class!
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/ Classes
 
 Note: Making truly (or almost truly) private vars using ES6 classes is rather advanced at this point in your JS development career.
-Modify the Vehicle constructor to use this & new as well as the JS conventions taught in the previous chapters Make the advanced modifications to the Vehicle constructor and then upload your code below
+Modify the Vehicle constructor to use this & new as well as the JS conventions taught in the previous chapters
+
+Make the advanced modifications to the Vehicle constructor and then upload your code below
