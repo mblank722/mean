@@ -21,10 +21,10 @@ console.log(accord)
 bus= new VehicleConstructor('Bus',8,14);
 bus.makeNoise=function(){console.log('loud honk, honk!')}
 bus.pickUp=function(new_pass){
-  numPass+=new_pass;
-  console.log('Passenger count: '+ num_pass)
+  this.numPass+=new_pass;
+  console.log('Passenger count: ' + this.numPass)
 }
-bus.makeNoise()
-bus.pickUp(5)
-bus.pickup(1)
-console.log(bus)
+bus.makeNoise();
+bus.pickUp(5);
+bus.pickup(1);
+console.log(bus);
