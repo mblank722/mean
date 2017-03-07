@@ -2,10 +2,14 @@
 function VehicleConstructor(name, numWheels, numPass,speed) {
 //PRIVATE
   var self=this;
-  var distance_travelled=0;
+  var distance_travelled = 0;
   var updateDistanceTravelled = function(){
-    distance_travelled += self.speed
+    distance_travelled += this.speed
   }
+  var display_distance_travelled = function (){
+    console.log('distance_travelled: ' + distance_travelled);
+  }
+//PUBLIC
   this.name = name;
   this.numWheels = numWheels;
   this.numPass = numPass;
@@ -14,24 +18,24 @@ function VehicleConstructor(name, numWheels, numPass,speed) {
     console.log('buzz, buzz!');
   };
   this.move = function(){
-    this.updateDistanceTravelled();
+    updateDistanceTravelled();
     this.makeNoise();
   };
   this.checkMiles = function(){
-    console.log('distance_travelled: ' + distance_travelled);
+    display_distance_travelled();
     self.makeNoise();
   };
 }
 schwinn=new VehicleConstructor('Bike',2,1,15);
-schwinn.makeNoise=function(){console.log('ring, ring!')}
-schwinn.makeNoise()
-schwinn.move()
-//console.log(schwinn)
+schwinn.makeNoise=function(){console.log('ring, ring!')};
+schwinn.move();
+schwinn.checkMiles();
+console.log(schwinn)
 
 accord=new VehicleConstructor('Sedan',2,4,70);
 accord.makeNoise=function(){console.log('honk, honk!')};
-accord.makeNoise();
 accord.move();
+accord.checkMiles();
 //console.log(accord)
 
 bus= new VehicleConstructor('Bus',8,14,40);
@@ -44,4 +48,5 @@ bus.makeNoise();
 bus.pickUp(5);
 bus.pickUp(1);
 bus.move();
+bus.checkMiles();
 //console.log(bus);
