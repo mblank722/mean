@@ -1,12 +1,19 @@
-var arr = [3, 6];
-arr[234] = "hi";
-//
-console.log( arr.length ); // 235
-console.log( arr[34] ); // undefined
-arr.length = 3;
-console.log( arr[34] );
-console.log( arr[234] );
-console.log( arr.length );
-arr.length = 500;
-console.log( arr[234] );
-console.log( arr.length );
+function Ninja(name, age, prevOccupation) {
+  // PRIVATE
+  var privateVar = "This is a private variable";
+  var privateMethod = function() {
+    console.log(this); // What will print here?
+  }
+  // PUBLIC
+  this.name = name;
+  this.age = age;
+  this.prevOccupation = prevOccupation
+  // PUBLIC METHODS DECLARED HERE
+  this.introduce = function() {
+    console.log("Hi my name is " + this.name + ". I used to be a " + this.prevOccupation + " and now I'm a Ninja!");
+    privateMethod();
+    console.log(privateVar);
+  }
+}
+var Speros = new Ninja("Speros", 24, "MBA");
+Speros.introduce();
