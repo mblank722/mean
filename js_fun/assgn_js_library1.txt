@@ -16,7 +16,7 @@ To create your own custom JavaScript library, you will just add methods to a JS 
 Let’s build a few methods of underscore!
 
 var _ = {
-   map: function() {
+    map: function() {
      //code here;
    },
    reduce: function() {
