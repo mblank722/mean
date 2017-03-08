@@ -17,28 +17,49 @@ function DeckConstructor(name, numWheels, numPass, speed) {
 
   DeckConstructor.prototype.reset = function (deck){
     var end_of_deck = false;
+    var cnt = 0;
+
     var suits = ['d', 'c', 'h', 's'];
     // while (!end_of_deck) {
-     var cnt = 0
       for (var i = 0; i < 4; i++) {
+        for (var x = 1; x < 14; x++) {
 
-        for (var j = 0; j < 13; j++) {
-          cnt++
-          if (j < 11) {
-            this.deck [cnt] = j + suits[i]
-          } else if (j = 11) {
-            this.deck [cnt] = 'j' + suits[i]
-          } else if (j = 12) {
-            this.deck [cnt] = 'q' + suits[i]
-          } else {
-            this.deck [cnt] = 'k' + suits[i]
+          if (x < 11) {
+            this.deck[cnt] = x + suits[i];
+            }
+          else if (x === 11) {
+            this.deck[cnt] = 'j' + suits[i];
+            }
+          else if (x === 12) {
+            this.deck[cnt] = 'q' + suits[i];
           }
-          console.log("cnt: " + cnt + " card: " + this.deck [cnt])
+          else {
+            this.deck[cnt] = 'k' + suits[i];
+          }
+          console.log("cnt: " + cnt + " card: " + this.deck [cnt]);
+          cnt++;
+          // if (cnt > 25)  break;
         }
 
       }
 
-  DeckConstructor.prototype.shuffle = function (deck){};
+  DeckConstructor.prototype.shuffle = function (deck){
+    var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
+  };
   DeckConstructor.prototype.deal = function (deck){};
 
   }
