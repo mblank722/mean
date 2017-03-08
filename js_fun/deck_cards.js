@@ -22,7 +22,7 @@ function DeckConstructor(name, numWheels, numPass, speed) {
     //   var cnt = 0
       for (var i = 0; i < 4; i++) {
 
-        for (var j = 0; j < 13, j++) {
+        for (var j = 0; j < 13; j++) {
           cnt++
           if (j < 11) {
             deck [cnt] = j + suits[i]
