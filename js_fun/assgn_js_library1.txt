@@ -10,7 +10,7 @@ function each(arr, callback) {
     callback(arr[i]); // invoking the callback many times... delegation!
   }
 }
-Copy
+
 To create your own custom JavaScript library, you will just add methods to a JS object! (Later on when we teach you about immediate functions you’ll see how to make this more robust to build libraries like jQuery!).
 
 Let’s build a few methods of underscore!
@@ -33,10 +33,11 @@ var _ = {
    }
  }
 // you just created a library with 5 methods!
-Copy
+
 var evens = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
 console.log(evens); // if things are working right, this will return [2,4,6].
-Copy
+
+
 Hints:
 
 Look at _.filter when it is invoked.
