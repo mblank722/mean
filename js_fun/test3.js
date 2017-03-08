@@ -1,11 +1,9 @@
-console.log("NOW: ");
-console.log("Declaring and assigning variable 'ninja'.");
-var ninja = 'Libby';
+var a = 2;
+var b = function() { console.log("something"); };
 
-setTimeout( function myCallbackFunction(){
-  console.log("LATER: ")
-  console.log(ninja, "LATER"); }, 2000
-);
+function doSomething(x) {
+  console.log(typeof(x));
+}
 
-console.log("Printing ninja value.");
-console.log(ninja, "NOW");
+doSomething(a);
+doSomething(b);
