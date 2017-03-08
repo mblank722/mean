@@ -23,7 +23,6 @@ function DeckConstructor(name, numWheels, numPass, speed) {
     // while (!end_of_deck) {
       for (var i = 0; i < 4; i++) {
         for (var x = 1; x < 14; x++) {
-
           if (x < 11) {
             this.deck[cnt] = x + suits[i];
             }
@@ -38,9 +37,7 @@ function DeckConstructor(name, numWheels, numPass, speed) {
           }
           console.log("cnt: " + cnt + " card: " + this.deck [cnt]);
           cnt++;
-          // if (cnt > 25)  break;
         }
-
       }
 
   DeckConstructor.prototype.shuffle = function (deck){
@@ -66,3 +63,4 @@ function DeckConstructor(name, numWheels, numPass, speed) {
 }
 deck1 = new DeckConstructor();
 deck1.reset();
+console.log(deck1.deck)
