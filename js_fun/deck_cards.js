@@ -1,17 +1,8 @@
 
-function DeckConstructor(name, numWheels, numPass, speed) {
+function DeckConstructor() {
 //PRIVATE
   var self=this;
 
-  var createVin = function(){
-      var x = Math.floor(Math.random() * 100000000000);
-      // console.log('VIN: ' + x)
-    return x
-  }
-  var returnVin = function(self) {
-    console.log('VIN: ' + vin)
-    return self
-  }
 //PUBLIC
   this.deck = [];
 
@@ -39,28 +30,49 @@ function DeckConstructor(name, numWheels, numPass, speed) {
           cnt++;
         }
       }
+    }
 
-  DeckConstructor.prototype.shuffle = function (deck){
-    var m = array.length, t, i;
-
+  DeckConstructor.prototype.shuffle = function (){
+      var m = this.deck.length, t, i;
   // While there remain elements to shuffle…
-  while (m) {
-
-    // Pick a remaining element…
-    i = Math.floor(Math.random() * m--);
-
+      while (m) {
+        // Pick a remaining element…
+      i = Math.floor(Math.random() * m--);
     // And swap it with the current element.
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
-
-  return array;
+      t = this.deck[m];
+      this.deck[m] = this.deck[i];
+      this.deck[i] = t;
+    }
+    return this.deck;
   };
-  DeckConstructor.prototype.deal = function (deck){};
 
+  DeckConstructor.prototype.deal = function (){
+    return this.deck.pop()
   }
 }
+
+function PlayerConstructor (name) {
+  var self = this
+  this.name = name;
+  this.hand =[];
+  this.take_card = function (deck) {
+    var card=deck.deal()
+    this.hand.push(card)
+
+  }
+
+
+
+
+}
+
 deck1 = new DeckConstructor();
 deck1.reset();
-console.log(deck1.deck)
+deck1.shuffle();
+console.log(deck1.deal())
+Bion= new PlayerConstructor('Bion');
+Bion.take_card(deck1);
+Bion.take_card(deck1);
+Bion.take_card(deck1);
+console.log(Bion.hand);
+console.log(deck1.deck);
