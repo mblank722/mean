@@ -5,7 +5,9 @@ The Deck should contain the 52 standard cards
 
 The Deck should be able to shuffle
 
-The Deck should be able to reset The Deck should be able to deal a random card
+The Deck should be able to reset
+
+The Deck should be able to deal a random card
 
 Deal should return the card that was dealt and remove it from the deck
 ============================================================
