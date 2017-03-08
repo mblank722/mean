@@ -6,6 +6,7 @@ function DeckConstructor() {
 //PUBLIC
   this.deck = [];
 
+
   DeckConstructor.prototype.reset = function (deck){
     var end_of_deck = false;
     var cnt = 0;
@@ -58,11 +59,10 @@ function PlayerConstructor (name) {
   this.take_card = function (deck) {
     var card=deck.deal()
     this.hand.push(card)
-
   }
-
-
-
+  this.discard = function (card_number) {
+    this.hand.splice(card_number-1,1)
+  }
 
 }
 
@@ -75,4 +75,6 @@ Bion.take_card(deck1);
 Bion.take_card(deck1);
 Bion.take_card(deck1);
 console.log(Bion.hand);
-console.log(deck1.deck);
+// console.log(deck1.deck);
+Bion.discard(2);
+console.log(Bion.hand);
