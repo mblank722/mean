@@ -13,6 +13,14 @@ var server = http.createServer(function (request, response){
             response.end(); // finished!
         });
     }
+
+    if(request.url === '/') {
+        fs.readFile('ninjas.html', 'utf8', function (errors, contents){
+            response.writeHead(200, {'Content-Type': 'text/html'});  // send data about response
+            response.write(contents);  //  send response body
+            response.end(); // finished!
+        });
+    }
     // request didn't match anything:
     else {
         response.writeHead(404);
