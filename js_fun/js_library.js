@@ -22,7 +22,17 @@ var _ = {
       }
       return self.sum
     },
-    find: function() {
+    find: function(arr, callback) {
+      var self=this;
+      var found = false;
+      self.first_found;
+      for (var i = 0; i < arr.length && !found ; i++) {
+        if (callback(arr[i])){
+          self.first_found = (arr[i]);
+          found=true;
+        }
+      }
+      return self.first_found
         // code here;
     },
     filter: function(arr,callback) {
@@ -47,7 +57,8 @@ var _ = {
       return self.new_arr
     }
 }
-
+test0=_.find([10,9,8,7,6,5,4,3,2,1,1,1,1,1], function (num){return num === 11;});
+console.log(test0);
 test=_.map([3,2,1], function (num){return  num*num;});
 console.log(test);
 test2=_.map([3,2,1], function (num){return  87;});
