@@ -53,13 +53,16 @@ app.post('/results', function (req, res){
 
     user = {
 			name: req.body.name,
-			dojo_location: req.body.dojo_location,
-			favorite_language: req.body.favorite_language,
+			location: req.body.location,
+			language: req.body.language,
 			comment: req.body.comment
 		};
 
+
+    console.log("one more time", user)
+
     // redirect the user back to the root route.
-    res.render('results', {user:user})
+    res.render('results', {user:user,})
 });
 
 
