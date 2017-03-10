@@ -1,0 +1,41 @@
+<h1>Survey Form - Express</h1>
+
+<form action="/results" method="post">
+
+  <p>
+    Your Name:
+    <input type="text" name='user[name]'>
+  </p>
+  <p>
+    Dojo Location:
+    <select name="user[location]">
+      <option value="Dakar">Dakar</option>
+      <option value="San Jose">San Jose</option>
+      <option value="Timbuktu">Timbuktu</option>
+      <option value="Washington DC">Washingoton DC</option>
+      <option value="Dakar">Dakar</option>
+      <option value="Seattle">Fiat</option>
+      <option value="Tokyo">Tokyo</option>
+      <option value="Berkeley">Berkeley</option>
+    </select>
+  </p>
+  <p>
+    Favorite Language:
+    <select name="user[language]">
+      <option value="Ruby on Rails">Ruby on Rails</option>
+      <option value="Javascript">Javascript</option>
+      <option value="Swift/OSX">Swift/OSX</option>
+      <option value="Cobol">Cobol</option>
+      <option value="English">English</option>
+      <option value="French">French</option>
+      <option value="Swahili">Swahili</option>
+      <option value="Mandarin">Mandarin</option>
+    </select>
+  </p>
+  <p>
+    <textarea name="user[comment]" rows="10" cols="100">
+
+    </textarea>
+  </p>
+  <input type="submit" value="Submit">
+</form>

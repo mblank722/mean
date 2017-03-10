@@ -1,0 +1,18 @@
+{
+  "name": "survey_form",
+  "version": "1.0.0",
+  "description": "Survey app alllows the user to input/store/display teh follwoing:  Name, Dojo Location, Favorite Language and Comment",
+  "main": "index.ejs",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Mitchell Blank",
+  "license": "ISC"
+}
