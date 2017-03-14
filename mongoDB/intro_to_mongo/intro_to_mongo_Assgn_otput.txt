@@ -1,0 +1,96 @@
+Mitchell Hello,  Mitchell B
+Assignment: Intro to MongoDB
+For This section, we want you to do the following operations in a MongoDB database. Work with a partner or a small group so everyone gets a chance to collaborate and work as a team. For some of these, you may have to refer to MongoDB's operator documentation. This is one of the most important assignments in this section, make sure you answer all questions and take notes for future assignments.
+
+Create a database called 'my_first_db'.
+use "my_first_db"
+
+Create students collection.
+
+db.createColection(students)
+
+Each document you insert into this collection should have the following format: ({
+name: STRING,
+home_state: STRING,
+lucky_number: NUMBER,
+birthday: {month: NUMBER, day: NUMBER, year: NUMBER}})
+
+ db.students.insert({name: 'paul', home_state: 'ny', lucky_number:1, birthday:{month: 01, day: 01,year: 1955}})
+
+
+Get all students.
+ db.students.find()
+ db.students.find().pretty()
+
+Retrieve all students who are from California (San Jose Dojo) or
+ Washington (Seattle Dojo).
+  db.students.find({:home_state: 'ny'})
+
+Get all students whose lucky number is:
+greater than 3
+ db.students.find({lucky_number:{$gt: 3}})
+
+less than or equal to 10
+ db.students.find({lucky_number:{$lte: 10}})
+
+between 1 and 9 (inclusive)
+  db.students.find({lucky_number:{$gte:1 , $lte: 9}})
+
+===========================================================
+
+Add a field to each student collection called 'interests' that is an ARRAY.  It should contain
+ the following entries: 'coding', 'brunch', 'MongoDB'. Do this in ONE operation.
+
+  db.students.update({},{$set:{interests: ['coding','brunch','MongoDB']}},multi: true})
+
+Add some unique interests for each particular students into each of their interest arrays.
+
+  db.students.update({name: "mitchell"}, {$push: {interests: 'shambhala'}})
+  db.students.update({name: "barry"}, {$push: {interests: 'antiques'}})
+  db.students.update({name: "judith"}, {$push: {interests: 'her friends'}})
+  db.students.update({name: 'andrew'}, {$push: {interests: 'his kids'}})
+
+
+
+Add the interest 'taxes' into someone's interest array.
+
+> db.students.update({name: 'barry'}, {$push: {interests: 'taxes'}  })
+
+
+Remove the 'taxes' interest you just added.
+
+> db.students.update({name: 'barry'}, {$push: {interests: 'taxes'}  })
+
+Remove all students who are from California (or Washington).
+ first change my home start (db.students.update({name: 'mitchell'},  {$set: {home_state: 'ca'} } ))
+
+
+
+
+Remove a user by name.
+
+  db.students.remove({name: "barry"})
+
+  db.students.remove({name: {$ne: 'mitchell'}})
+
+Remove a student whose lucky number is greater than 5 (JUST ONE)
+> db.students.remove({lucky_number: {$gt: 3}} , true)
+
+Add a field to each student collection called 'number_of_belts' and set it to 0.
+> db.students.update({},{$set:{number_of_belts: 0 },multi: true})
+
+Increment this field by 1 for all students in Washington (Seattle Dojo).
+> db.students.update({name: 'paul'},{$inc: {number_of_belts: 1}})
+
+
+Rename the 'number_of_belts' field to 'belts_earned'
+> db.students.update({},{$rename: {'number_of_belts': 'belts_earned'}})
+
+
+Remove the 'lucky_number' field.
+> db.students.update ({},{$unset: {lucky_number:''}}, {multi: true})
+
+Add a 'updated_on' field, and set the value as the current date.
+> db.students.update ({},{$set : {updated_on: new Date() }}, {multi: true})
+
+=====================================
