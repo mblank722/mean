@@ -62,17 +62,26 @@ app.use(function(req, res, next) {
 app.get('/', function(req, res) {
     // Retrieve the users from the database and include them in the view page we will be rendering.
     Post.find({}, function(err, posts) {
-
-    if(err) {
-      console.log('Oops - something went wrong');
-      console.log(err);
-      res.render('index', {err:err});
-    } else { // else console.log that we did well and then redirect to the root route
-      //console.log(users);
-      res.render('index', { posts:posts});
-    }
-  })
-})
+      // data from form on the front end
+       var comment = new Comment(req.body);
+       //  set the reference like this:
+       comment._post = post._id;
+       // now save both to the DB
+        comment.save(function(err){
+          post.comments.push(comment);
+          post.save(function(err){
+          if(err) {
+            console.log('Oops - something went wrong');
+            console.log(err);
+            res.render('index', {err:err});
+          } else { // else console.log that we did well and then redirect to the root route
+            //console.log(users);
+            res.render('index', { posts:posts});
+          }
+        });
+      });  
+  });
+});
 
 // Add User Request
 app.post('/post/new', function(req, res) {
