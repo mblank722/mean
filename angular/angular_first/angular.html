@@ -1,13 +1,21 @@
-<!DOCTYPE html>
 <html ng-app='myApp'>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <scipt type='text/javascript'>
-    var myAppModule = angular.module('myApp',[]);
-  </script>
+    <title>angular</title>
+    <script src='bower_components/angular/angular.js'/></script>
+
+    <script type='text/javascript'>
+    var myApp = angular.module('myApp',[]);
+    </script>
   </head>
+
   <body>
+    <div ng-init="students=[{name: 'Mike', age: 34}, {name: 'John', age: 24}, {name: 'Trey', age: 24}, {name: 'India', age: 35}]">
+    <ul>
+        <li ng-repeat="student in students">{{ student.name }},{{ student.age }}</li>
+    </ul>
+    </div>
+
 
   </body>
 </html>
