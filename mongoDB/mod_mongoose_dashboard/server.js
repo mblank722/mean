@@ -22,22 +22,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Require path
 var path = require('path');
 
-// Connect to the mongodb database using mongoose -- "basic_mongoose" is the name of
-//   our db in mongodb -- this should match the name of the db you are going to use for your project.
-mongoose.connect('mongodb://localhost/puppies');
-
-var PuppySchema = new mongoose.Schema({
- name: String,
- age: Number
-})
 
 // Set this Schema in models as 'Puppy'
-mongoose.model('Puppy', PuppySchema);
-// Retrieving Schema from model 'Puppy'
-var Puppy = mongoose.model('Puppy');
+//mongoose.model('Puppy', PuppySchema);
 
 // Use native promises
-mongoose.Promise = global.Promise;
+//mongoose.Promise = global.Promise;
 
 // Setting our Static Folder Directory
 app.use(express.static(path.join(__dirname, './static')));
