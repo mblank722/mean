@@ -18,17 +18,28 @@ mongoose.connect('mongodb://localhost/message_board');
 //Define Schema
 var Schema = mongoose.Schema;
 //Define Post (sub)schema
+// var PostSchema = new mongoose.Schema({
+//  name: String,
+//  message: String,
+//  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}]
+// })
 var PostSchema = new mongoose.Schema({
- name: String,
- message: String,
+ name: {type: String, required: true, minlength:4 },
+ message: {type: String, required: true },
  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 })
 
 //+
+//var CommentSchema = new mongoose.Schema({
+//   _post: {type: Schema.Types.ObjectId, ref: 'Post'},
+//  name:    String,
+//  message: String
+// })
+//
 var CommentSchema = new mongoose.Schema({
   _post: {type: Schema.Types.ObjectId, ref: 'Post'},
- name: String,
- message: String
+  name: {type: String, required: true, minlength:4 },
+  message: {type: String, required: true},
 })
 
 mongoose.model('Post', PostSchema); // We are setting this Schema in our Models as '{Post}'
@@ -65,117 +76,29 @@ app.use(function(req, res, next) {
 // Root Request
 app.get('/', function(req, res) {
   // Retrieve the posts from the database -> render
-  //Post.find({}, function(err, posts) {
-  // the populate method is what grabs all of the comments using their IDs stored in the
-  // comment property array of the post document!
-  //for (var i = 0; i < posts.length; i++){
    Post.find({})
    .populate('comments')
    .exec(function(err, posts) {
-
-     res.render('index', {posts: posts})
+    res.render('index', {posts: posts})
    })
-  //}
 })
 
-
-
-
-
-
-// app.get('/', function(req, res) {
-//     // Retrieve posts from the database and include them in the view page we will be rendering.
-//     Post.find({}, function(err, posts) {
-//       // data from form on the front end
-//        var comment = new Comment(req.body);
-//        //  set the reference like this:
-//        //comment._post = posts._id;
-//        // now save both to the DB
-//           comment.save(function(err){
-//           posts.comment.push(comment);
-//           posts.save(function(err){
-//           if(err) {
-//             console.log('Oops - something went wrong');
-//             console.log(err);
-//             res.render('index', {err:err});
-//           } else { // else console.log that we did well and then redirect to the root route
-//             //console.log(users);
-//             res.render('index', { posts:posts});
-//           }
-//         });
-//       });
-//   });
-// });
-
-
-//app.get('/', function(req, res) {
-    // Retrieve the users from the database and include them in the view page we will be rendering.
-    //Post.find({})//, function(err, posts) {
-    //.populate('comments')
-    //.exec(function(err, post) {
-    // res.render('post', {post: post});
-    //   });
-    // // data from form on the front end
-    //  var comment = new Comment(req.body);
-    //  //  set the reference like this:
-    //  comment._post = posts._id;
-    //  // now save both to the DB
-    //   comment.save(function(err){
-    //     posts.comment.push(comment);
-    //     posts.save(function(err){
-    //     if(err) {
-    //       console.log('Oops - something went wrong');
-    //       console.log(err);
-    //       res.render('index', {err:err});
-    //     } else { // else console.log that we did well and then redirect to the root route
-    //       //console.log(users
-    //console.log('res.body: ', res.body);
-    //      res.render('index', { posts:res});
-    //})
-
-  //});
-
-
-// app.get('/', function(req, res) {
-//     // Retrieve the users from the database and include them in the view page we will be rendering.
-//     Post.find({}, function(err, posts) {
-//       // data from form on the front end
-//        var comment = new Comment(req.body);
-//        //  set the reference like this:
-//        comment._post = posts._id;
-//        // now save both to the DB
-//         comment.save(function(err){
-//           posts.comment.push(comment);
-//           posts.save(function(err){
-//           if(err) {
-//             console.log('Oops - something went wrong');
-//             console.log(err);
-//             res.render('index', {err:err});
-//           } else { // else console.log that we did well and then redirect to the root route
-//             //console.log(users);
-//             res.render('index', { posts:posts});
-//           }
-//         });
-//       });
-//   });
-// });
 
 // Add User Route
 app.post('/post/new', function(req, res) {
     console.log("Post data: ", req.body);
     // Add the user from req.body to the database.
-    var post = new Post({name: req.body.name, message: req.body.message});
-
+    var post = new Post({name: req.body.name, message: req.body.message, errors: req.body.errors});
     post.save(function(err) {
     if(err) {
       console.log('Oops - something went wrong adding a post');
-      console.log(err);
-      res.redirect('/');
+      // console.log(err);
+      // res.render('index', {errors:post.errors});
     } else {
       console.log('successfully added a post!');
       console.log('Name: ', post.name, 'Message: ', post.message);
       res.redirect('/');
-      }
+    }
     })
 })
 
@@ -192,11 +115,10 @@ app.post('/comments/new/:id', function(req, res) {
         post.comments.push(comment);
         post.save(function(err){
           if(err) {
-            console.log('Error');
-           } else {
-
-             res.redirect('/');
-           }
+            console.log('Oops - something went wrong adding a comment');
+          } else {
+            res.redirect('/');
+          }
          });
        });
     });

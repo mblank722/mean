@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> <%= title %> </title>
+  </head>
+  <body>
+    <h1>Welcome to Puppy Dashboard</h1>
+    <h2>Here are all the puppies:</h2>
+    <% for (var i = 0; i < puppies.length; i++) { %>
+      <div style='display:inline-block'>
+        <h3>Name:
+          <a href="/puppies/<%= puppies[i]._id %>"> <%= puppies[i].name %></a>
+
+          age: <%= puppies[i].age %>
+
+        <!-- <a href="/puppies/edit/<%=puppies[i]._id %>">Edit the Puppy</a> -->
+          <form action="/puppies/edit/<%=puppies[i]._id %>" method='get'>
+            <input type="submit" value="Edit the Puppy">
+          </form>
+
+          <form action="/puppies/destroy/<%=puppies[i]._id%>">
+            <input type="submit" value="Delete the Puppy">
+          </form>
+        </h3>
+        <!-- <hr> -->
+      </div>
+    <% } %>
+  <!-- <h2>Input Users Here:</h2>
+
+    <form action="/puppies" method="post">
+      Name: <br>
+      <input type="text" name='name'><br>
+      Age: <br>
+      <input type="text" name='age'><br>
+      <input type="submit" value="Submit">
+    </form> -->
+    <h3>Add a New Puppy</h3>
+    <form action="/puppies/new">
+      <input type="submit" value="Add a Puppy">
+    </form>
+  </body>
+</html>

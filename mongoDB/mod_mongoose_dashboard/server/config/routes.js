@@ -2,8 +2,8 @@
 //require mongoose?
 var mongoose = require('mongoose');
 //import Puppy model?
-var Puppy = mongoose.model('Puppy');
-var puppies =require('../controllers/puppies.js')
+//var Puppy = mongoose.model('Puppy');
+var puppies = require('../controllers/puppies.js')
 
 // place routes in function adn ready for export
 module.exports = function(app) {

@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Delete Puppy</title>
+  </head>
+  <body>
+    <h1>Delete Puppy? </h1>
+
+    Name: <%= puppy.name %> <br>
+    Age: <%= puppy.age %>
+
+    <form action ="/puppies/destroy/<%= puppy._id %>" method='post'>
+      <input type="submit" value="delete">
+    </form>
+
+    <form action ="/" method='get'>
+      <input type="submit" value="Return">
+    </form>
+
+  </body>
+</html>

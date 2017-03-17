@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Puppy</title>
+  </head>
+  <body>
+    <h1>Edit a Puppy</h1>
+    <form action="/puppies/<%= puppy._id %>" method="post">
+      Name: <br>
+      <input type="text" name='name' value=<%=puppy.name%>><br>
+      Age: <br>
+      <input type="text" name='age' value=<%=puppy.age%>><br>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

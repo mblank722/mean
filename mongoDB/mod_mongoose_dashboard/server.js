@@ -30,13 +30,15 @@ var path = require('path');
 //mongoose.Promise = global.Promise;
 
 // Setting our Static Folder Directory
-app.use(express.static(path.join(__dirname, './static')));
+app.use(express.static(path.join(__dirname, './clients/static')));
 // Setting our Views Folder Directory
 app.set('views', path.join(__dirname, './client/views'));
 // Setting our View Engine set to EJS
 
 app.set('view engine', 'ejs');
 
+// require the mongoose config file which does rhe rest for us
+require('./server/config/mongoose.js')
 // store the function in a variable
 var routes_setter = require('./server/config/routes.js');
 // invoke the function stored in routes_setter and pass it the "app" variable

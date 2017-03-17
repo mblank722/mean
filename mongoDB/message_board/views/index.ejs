@@ -5,7 +5,13 @@
     <title>Message Board</title>
   </head>
   <body>
-    <h1>Message Board</h1>
+    <h1>Message Board</h1
+
+      <% if(typeof(errors) != 'undefined' ) { %>
+        <% for (var x in errors) { %>
+          <h3><%= errors[x].message %></h3>
+          <% } %>
+     <% } %>
 
     <h2>Input Post Here:</h2>
 
@@ -17,25 +23,25 @@
 
     <h2>Here are all the Post:</h2>
     <% for (var i = 0; i < posts.length; i++) { %>
-        <h3>
+      <h3>
+        Name: <%= posts[i].name %>
+        Message: <%= posts[i].message %>
 
-          Name: <%= posts[i].name %>
-          Message: <%= posts[i].message %>
+      </h3>
+          <% for (var j = 0; j < posts[i].comments.length; j++) { %>
 
-          <% for (var j = 0; j < posts.length; j++) { %>
+            Name: <%= posts[i].comments[j].name %>
+            Comment: <%= posts[i].comments[j].message %>
 
-
-                Name: <%= posts[i].comment[j].name %>
-                Comment: <%= posts[i].comment[j].message  %>
-
-
+          <br>
+          <% } %>
+          <br>
           <form action="/comments/new/<%= posts[i]._id %>" method="post">
             Name: <input type="text" name='name'>
             Comment:<textarea name='message' rows="1" cols="100" ></textarea><br>
             <input type="submit" value="Post Comment">
           </form>
-        </h3>
-
+          <br>
     <% } %>
   </body>
 </html>
