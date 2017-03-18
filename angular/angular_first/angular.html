@@ -1,21 +1,29 @@
-<html ng-app='x'>
+<html ng-app='myApp'>
   <head>
     <meta charset="utf-8">
     <title>angular</title>
     <script src='bower_components/angular/angular.js'/></script>
 
     <script type='text/javascript'>
-    var myApp = angular.module('x',[]);
+    var myAppModule = angular.module('MyApp',[]);,
+/the .controller() method adds a controller to the myAppModule
+myAppModule.contoller('studentsContrOller', function($scope){
+    $scope.students = [
+      {name: 'Mike', age: 34},
+      {name: 'John', age: 24},
+      {name: 'Trey', age: 24},
+      {name: 'India', age: 35}
+    ];
+});
+
     </script>
   </head>
 
   <body>
-    <div ng-init="students=[{name: 'Mike', age: 34}, {name: 'John', age: 24}, {name: 'Trey', age: 24}, {name: 'India', age: 35}]">
+    <div ng-controller="studentsController">
     <ul>
         <li ng-repeat="student in students">{{ student.name }},{{ student.age }}</li>
     </ul>
     </div>
-
-
   </body>
 </html>
