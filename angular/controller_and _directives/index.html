@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = 'app'>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src = 'bower_components/angular/angular.js'></script>
+
+  <script>
+
+  var app = angular.module('app', []);
+
+  app.controller('divController', function($scope){
+    $scope.myName = 'mitchell'; // your name!
+    $scope.myFavoriteLanguage = 'JavaScript';
+    $scope.myFavoriteJSLibrary = 'Angular';
+    }
+  );
+  </script>
+</head>
+
+
+<body>
+  <div ng-controller = "divController">
+
+    <p>
+      Favorite Food
+      <input type="text" name="favFood"></input>
+      <input type="submit" name='addFavFood' value="Add Food"></input>
+    </p>
+
+    <p>
+    Currently Typing
+      <input type="text" name="favFood"></input>
+
+    </p>
+
+
+</div> <!-- END OF general-Directive -->
+
+</body>
+</html>

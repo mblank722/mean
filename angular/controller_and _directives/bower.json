@@ -1,0 +1,20 @@
+{
+  "name": "controller_and _directives",
+  "homepage": "https://github.com/mblank722/mean",
+  "authors": [
+    "mitchell blank"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.3"
+  }
+}
