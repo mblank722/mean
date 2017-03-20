@@ -1,41 +1,40 @@
-<html ng-app='myApp'>
-  <head>
-    <meta charset="utf-8">
-    <title>angular</title>
-    <script src='bower_components/angular/angular.js'/></script>
-
-    <script type='text/javascript'>
-          var myAppModule = angular.module('myApp', []);
-          // the .controller() method adds a controller to the module
-          myAppModule.controller('studentsController', function ($scope){
-              $scope.students = [
-                {name: 'Mike', age: 34},
-                {name: 'John', age: 24},
-                {name: 'Trey', age: 24},
-                {name: 'India', age: 35}
-              ];
-              $scope.addStudent = function (){
-                // add to the array
-                $scope.students.push($scope.newStudent);
-                // clear the form values
-                $scope.newStudent = {};
-              }  
-          });
-        </script>
-  </head>
-
-  <body>
-    <div ng-controller='studentsController'>
-      <ul>
-          <li ng-repeat="student in students">{{ student.name }},{{ student.age }}</li>
-      </ul>
-      <h3>Add a new student!</h3>
-      <form>
-          Name: <input type='text' ng-model='newStudent.name'>
-          Age: <input type='text' ng-model='newStudent.age'>
-          <input type='submit' value='add new student' ng-click='addStudent()'>
-      </form>
-
+<!DOCTYPE html>
+<html lang="en" ng-app = 'app'>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src = 'bower_components/angular/angular.js'>
+  </script>
+  <script>
+  var app = angular.module('app', []);
+  app.controller('myController', ['$scope', function($scope){
+    //printController will show the current $scope
+    $scope.printController = function(){
+      console.log($scope);
+    }
+  }]);
+  </script>
+</head>
+<body>
+    <div ng-controller = "myController" id = "myController">
+      <input type="text" ng-model = 'myModel'>
+      <label>
+        ng-model = "myModel"
+      </label>
+      <p>
+        When we type in our input, the $scope.myModel object is created in our controller (two way binding), even though we didn't declare it in our intial model description
+      </p>
+      <div id ='model' ng-if = "myModel">
+        <span>
+          ***INPUT: {{myModel}}***
+        </span>
+        <b>
+          If you click the button, you will get the $scope object.  Find myModel in it!  Refresh the page and don't enter anything into the input field and see if you can find myModel..., and printController
+        </b>
+      </div>
+      <button ng-click = "printController('new parm',$scope);">
+        Show our $scope!
+       </button>
     </div>
-  </body>
+</body>
 </html>
