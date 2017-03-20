@@ -10,20 +10,18 @@
   var app = angular.module('app', []);
 
   app.controller('divController', function($scope){
-    //printController will show the current $scope
-
-$scope.myName = 'your name'; // your name!
-$scope.myFavoriteLanguage = 'JavaScript';
-$scope.myFavoriteJSLibrary = 'Angular';
-
+    $scope.myName = 'mitchell'; // your name!
+    $scope.myFavoriteLanguage = 'JavaScript';
+    $scope.myFavoriteJSLibrary = 'Angular';
     }
-  }]);
+  );
   </script>
 </head>
 
 
 <body>
   <div ng-controller = "divController">
+    {{myName }}
 
   <p>Hello World</p>
 </div> <!-- END OF general-Directive -->
