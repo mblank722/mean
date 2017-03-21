@@ -7,21 +7,20 @@
 </head>
 <body ng-app='myApp'>
 
-
   <div ng-controller='productsController'>
     <div ng-model='productModel'>
-    <p>Products Controller<br></p>
+    <p>Products Controller</p>
+    <br>
+      Product Name
+      <input type="text" name = 'name' ng-model='productModel.name'><br>
+      Price
+      <input type="text" name = 'price' ng-model='productModel.price'><br>
 
-    Product Name
-    <input type="text" name = 'name' ng-model='productModel.name'><br>
-    Price
-    <input type="text" name = 'price' ng-model='productModel.price'><br>
 
 
-
-    <button type-'button'   ng-click ="addProduct(
-      {name: productModel.name, price: productModel.price}
-    )" >Create Product</button>
+      <button type-'button'   ng-click ="addProduct(
+        {name: productModel.name, price: productModel.price}
+      )" >Create Product</button>
     <br>
 
 
@@ -43,9 +42,9 @@
       </td>
       <td>
         <button type-'button'   ng-click ="deleteProduct(product)" >Delete Product</button>
-        <br>
       </td>
     </tr>>
+  </table>
   </div>
 
   <script type='text/javascript'>
