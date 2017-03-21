@@ -1,0 +1,17 @@
+{
+  "name": "controlling Users",
+  "homepage": "https://github.com/mblank722/mean",
+  "authors": [
+    "Mitchell Blank"
+  ],
+  "description": ",table searchable, Add date column, table sortable",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
