@@ -1,0 +1,20 @@
+{
+  "name": filters
+  "homepage": "https://github.com/mblank722/mean",
+  "authors": [
+    "Mitchell Blank"
+  ],
+  "description": "play with filter",
+  "main": "index.html",
+  "license": "? description",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.3"
+  }
+}
