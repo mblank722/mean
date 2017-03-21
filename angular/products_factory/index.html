@@ -8,60 +8,92 @@
 <body ng-app='myApp'>
 
 
-    <div ng-controller='productsController'>
-      <div ng-model='productModel'>
-      <p>Products Controller<br></p>
-      Product Name
-      <input type="text" name = 'name' ng-model='productModel.name'><br>
-      Price
-      <input type="text" name = 'price' ng-model='productModel.price'><br>
+  <div ng-controller='productsController'>
+    <div ng-model='productModel'>
+    <p>Products Controller<br></p>
+
+    Product Name
+    <input type="text" name = 'name' ng-model='productModel.name'><br>
+    Price
+    <input type="text" name = 'price' ng-model='productModel.price'><br>
 
 
 
-      <button type-'button'   ng-click ="addProduct(
-        {name: productModel.name, price: productModel.price}
-      )" >Create Product</button>
-      <br>
+    <button type-'button'   ng-click ="addProduct(
+      {name: productModel.name, price: productModel.price}
+    )" >Create Product</button>
+    <br>
 
 
 
-      </div>
-      <div>
-      <ul>
-        <li ng-repeat="product in products ">
-          Product Name {{ product.name }}, Price {{ product.price }}
-          <button type-'button'   ng-click ="deleteProduct(product)" >Delete Product</button>
-          <br>
-        </li>
-      </ul>
     </div>
+    <div>
+    <table style="width:100%">
+    <tr>
+      <th>Product Namee</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+    <tr>
+      <td ng-repeat="product in products ">
+        {{ product.name }}
+      </td>
+      <td>
+        {{ product.price }}
+      </td>
+      <td>
+        <button type-'button'   ng-click ="deleteProduct(product)" >Delete Product</button>
+        <br>
+      </td>
+    </tr>>
+  </div>
 
-    <script type='text/javascript'>
-      var myApp = angular.module('myApp', []);
+  <script type='text/javascript'>
+    var myApp = angular.module('myApp', []);
 
-      myApp.controller('productsController', function ($scope){
-        $scope.products=[
-          {name: 'Keyboard', price: 'Matsumoto'},
-          {name: 'Mouse', price: 'Dahl,'},
-          {name: 'Vasketball', price: 'Eich'}
-                      ];
-        $scope.addProduct=function(product){
-          console.log("adding product: " , product );
+    myApp.factory('productFactory',[$scope, 'productFactory',function($scope, 'productFactory' )]){
 
-          $scope.products.push(product);
-          $scope.productModel = {};
-          console.log("list products: ", $scope.products);
-        }
+      var products =[
+        {name: 'Keyboard', price: 'Matsumoto'},
+        {name: 'Mouse', price: 'Dahl,'},
+        {name: 'Vasketball', price: 'Eich'}
+      ];
 
-          $scope.deleteProduct = function(productToDelete){
-              $scope.products = $scope.products.filter( function(product){
-                return product !== productToDelete;
-             })
-             console.log("delete product: " , productToDelete );
-             console.log("list products: ", $scope.products);
-        }
-      })
-    </script>
+
+
+      var factory = {};
+
+      factory.getProducts = function(callback){
+        callback(products);
+      }
+    return factory;
+    }
+
+    myApp.controller('productsController', [$scope, 'productFactory',function($scope, 'productFactory' )]{
+
+      $scope.students = [];
+
+      $scope.addProduct=function(product){
+        console.log("list products before: ", $scope.products);
+        console.log("adding product: " , product );
+        $scope.products.push(product);
+        $scope.productModel = {};
+        console.log("list products after: ", $scope.products);
+      }
+
+        $scope.deleteProduct = function(productToDelete){
+            $scope.products = $scope.products.filter( function(product){
+              return product !== productToDelete;
+           })
+           console.log("delete product: " , productToDelete );
+           console.log("list products: ", $scope.products);
+      }
+    })
+
+
+
+  </script>
+
 
 </body>
 </html>
