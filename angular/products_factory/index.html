@@ -7,6 +7,8 @@
 </head>
 <body>
 
+at top of body
+
   <div ng-controller='productsController'>
     <div ng-model='productModel'>
     <p>Products Controller</p>
@@ -49,8 +51,10 @@
 
   <script type='text/javascript'>
     var myApp = angular.module('myApp', []);
+console.log('top of myApp');
 
     myApp.factory('productFactory',function(){
+console.log('top of productFactory');
       var products =[
         {name: 'Keyboard', price: 'Matsumoto'},
         {name: 'Mouse', price: 'Dahl,'},
@@ -58,24 +62,25 @@
       ];
       var factory = {};
 
-      factory.addProduct=function(callback){
-        callback(products);
-      }
-
-    return factory;
-  });
-
-    myApp.controller('productsController', ['$scope', 'productFactory',function($scope,productFactory){
-
-      $scope.products = [];
-
-      productFactory.addProduct=function(product){
+      factory.addProduct=function(product){
+        console.log('top of factory.addProduct');
         console.log("list products before: ", $scope.products);
         console.log("adding product: " , product );
         $scope.products.push(product);
         $scope.productModel = {};
         console.log("list products after: ", $scope.products);
       }
+    return factory;
+  });
+
+    myApp.controller('productsController', ['$scope', 'productFactory',function($scope,productFactory){
+console.log('top of productController');
+
+      $scope.product = {};
+
+        $scope.addProduct=function($scope.product){
+          productFactory.addProduct(product)
+        };
 
         $scope.deleteProduct = function(productToDelete){
             $scope.products = $scope.products.filter( function(product){
