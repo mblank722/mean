@@ -1,11 +1,11 @@
-<html>
+<html ng-app='myApp'>
 <head>
   <meta charset="UTF-8">
-  <title>Filters</title>
+  <title>Products Factory</title>
   <script src='bower_components/angular/angular.js'></script>
 
 </head>
-<body ng-app='myApp'>
+<body>
 
   <div ng-controller='productsController'>
     <div ng-model='productModel'>
@@ -16,9 +16,7 @@
       Price
       <input type="text" name = 'price' ng-model='productModel.price'><br>
 
-
-
-      <button type-'button'   ng-click ="addProduct(
+      <button type='button' ng-click ="addProduct(
       {
         name: productModel.name,
         price: productModel.price
@@ -35,7 +33,7 @@
       <th>Price</th>
       <th>Action</th>
     </tr>
-    <trng-repeat="product in products ">
+    <tr ng-repeat="product in products ">
       <td >
         {{ product.name }}
       </td>
@@ -43,38 +41,35 @@
         {{ product.price }}
       </td>
       <td>
-        <button type-'button'   ng-click ="deleteProduct(product)" >Delete Product</button>
+        <button type='button' ng-click ="deleteProduct(product)" >Delete Product</button>
       </td>
-    </tr>>
+    </tr>
   </table>
   </div>
 
   <script type='text/javascript'>
     var myApp = angular.module('myApp', []);
 
-    myApp.factory('productFactory',[$scope, 'productFactory',function($scope, 'productFactory' )]){
-
-      var factory = {};
-
+    myApp.factory('productFactory',function(){
       var products =[
         {name: 'Keyboard', price: 'Matsumoto'},
         {name: 'Mouse', price: 'Dahl,'},
         {name: 'Vasketball', price: 'Eich'}
       ];
-
       var factory = {};
 
-      factory.getProducts = function(callback){
+      factory.addProduct=function(callback){
         callback(products);
       }
+
     return factory;
-    }
+  });
 
-    myApp.controller('productsController', [$scope, 'productFactory',function($scope, 'productFactory' )]{
+    myApp.controller('productsController', ['$scope', 'productFactory',function($scope,productFactory){
 
-      $scope.students = [];
+      $scope.products = [];
 
-      $scope.addProduct=function(product){
+      productFactory.addProduct=function(product){
         console.log("list products before: ", $scope.products);
         console.log("adding product: " , product );
         $scope.products.push(product);
@@ -89,9 +84,7 @@
            console.log("delete product: " , productToDelete );
            console.log("list products: ", $scope.products);
       }
-    })
-
-
+    }])
 
   </script>
 
