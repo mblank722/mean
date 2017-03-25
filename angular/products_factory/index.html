@@ -1,98 +1,79 @@
-<html ng-app='myApp'>
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Products Factory</title>
+  <title>Products w/ Factory</title>
   <script src='bower_components/angular/angular.js'></script>
-
-</head>
-<body>
-
-at top of body
-
-  <div ng-controller='productsController'>
-    <div ng-model='productModel'>
-    <p>Products Controller</p>
-    <br>
-      Product Name
-      <input type="text" name = 'name' ng-model='productModel.name'><br>
-      Price
-      <input type="text" name = 'price' ng-model='productModel.price'><br>
-
-      <button type='button' ng-click ="addProduct(
-      {
-        name: productModel.name,
-        price: productModel.price
-      }
-      )" >
-      Create Product
-      </button>
-    <br>
-    </div>
-    <div>
-    <table style="width:70%">
-    <tr>
-      <th>Product Name</th>
-      <th>Price</th>
-      <th>Action</th>
-    </tr>
-    <tr ng-repeat="product in products ">
-      <td >
-        {{ product.name }}
-      </td>
-      <td>
-        {{ product.price }}
-      </td>
-      <td>
-        <button type='button' ng-click ="deleteProduct(product)" >Delete Product</button>
-      </td>
-    </tr>
-  </table>
-  </div>
 
   <script type='text/javascript'>
     var myApp = angular.module('myApp', []);
-console.log('top of myApp');
 
-    myApp.factory('productFactory',function(){
-console.log('top of productFactory');
-      var products =[
-        {name: 'Keyboard', price: 'Matsumoto'},
-        {name: 'Mouse', price: 'Dahl,'},
-        {name: 'Vasketball', price: 'Eich'}
-      ];
-      var factory = {};
+    //create Product Factory
+    myApp.factory('productsFactory', function (){
+      var products=[
+        {first_name: 'Yukihiro', last_name: 'Matsumoto', language: 'Ruby'},
+        {first_name: 'Ryan', last_name: 'Dahl,', language: 'JavaScript'},
+        {first_name: 'Yukihiro', last_name: 'Eich', language: 'JavaScript'}
+                    ];
 
-      factory.addProduct=function(product){
-        console.log('top of factory.addProduct');
-        console.log("list products before: ", $scope.products);
-        console.log("adding product: " , product );
-        $scope.products.push(product);
+      var factory {};
+      factory.addProduct=function(){
+      factory.products.push($scope.productModel);
         $scope.productModel = {};
-        console.log("list products after: ", $scope.products);
+        console.log("list products: ", $scope.products);
       }
-    return factory;
-  });
 
-    myApp.controller('productsController', ['$scope', 'productFactory',function($scope,productFactory){
-console.log('top of productController');
-
-      $scope.product = {};
-
-        $scope.addProduct=function($scope.product){
-          productFactory.addProduct(product)
-        };
-
-        $scope.deleteProduct = function(productToDelete){
+      $scope.deleteProduct = function(productToDelete){
             $scope.products = $scope.products.filter( function(product){
               return product !== productToDelete;
            })
            console.log("delete product: " , productToDelete );
            console.log("list products: ", $scope.products);
       }
-    }])
+    })
 
+
+    // create Product Conroller
+    myApp.controller('productsController', function ($scope){
+      $scope.products=[];
+      $scope.addProduct=function(){
+        $scope.products.push($scope.productModel);
+        $scope.productModel = {};
+        console.log("list products: ", $scope.products);
+      }
+
+      $scope.deleteProduct = function(productToDelete){
+            $scope.products = $scope.products.filter( function(product){
+              return product !== productToDelete;
+           })
+           console.log("delete product: " , productToDelete );
+           console.log("list products: ", $scope.products);
+      }
+    })
   </script>
+</head>
 
+<body ng-app='myApp'>
+  <div ng-controller='productsController'>
+    <p>Products Controller<br></p>
+    First Name
+    <input type="text" name = 'first_name' ng-model='productModel.first_name'><br>
+    Last Name
+    <input type="text" name = 'last_name' ng-model='productModel.last_name'><br>
+    Favorite Language
+    <input type="text" name = 'language' ng-model='productModel.language'><br>
 
+    <button type-'button'   ng-click ="addProduct()" >Create Product</button>
+    <br>
+
+  <div>
+    <ul>
+      <p></p>
+      <li ng-repeat="product in products ">
+        fn {{ product.first_name }}, ln {{ product.last_name }},  language {{ product.language }}
+        <button type-'button'   ng-click ="deleteProduct(product)" >Delete Product</button>
+        <br>
+      </li>
+    </ul>
+  </div>
 </body>
 </html>

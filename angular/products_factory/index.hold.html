@@ -1,0 +1,96 @@
+<html ng-app='myApp'>
+<head>
+  <meta charset="UTF-8">
+  <title>Products Factory</title>
+  <script src='bower_components/angular/angular.js'></script>
+  <script type='text/javascript'>
+    var myApp = angular.module('myApp', []);
+console.log('top of myApp');
+
+    myApp.factory('productFactory',function(){
+console.log('top of productFactory');
+      var products =[
+        {name: 'Keyboard', price: 'Matsumoto'},
+        {name: 'Mouse', price: 'Dahl,'},
+        {name: 'Vasketball', price: 'Eich'}
+      ];
+      var factory = {};
+
+      factory.addProduct=function(product){
+        console.log('top of factory.addProduct');
+        console.log("list products before: ", $scope.products);
+        console.log("adding product: " , product );
+        products.push(product);
+        console.log("list products after: ", $scope.products);
+      }
+    return factory;
+  });
+
+    myApp.controller('productsController', ['$scope', 'productFactory',function($scope,productFactory){
+        console.log('top of productController');
+
+        $scope.productModel = {};
+
+        $scope.addProduct=function(){
+
+          console.log("list products before: ", $scope.productModel);
+
+          productFactory.addProduct();
+          product = {};
+        };
+
+        $scope.deleteProduct = function(productToDelete){
+            $scope.products = $scope.products.filter( function(product){
+              return product !== productToDelete;
+           })
+           console.log("delete product: " , productToDelete );
+           console.log("list products: ", $scope.products);
+      }
+    }])
+
+  </script>
+
+
+</head>
+<body>
+
+at top of body
+
+  <div ng-controller='productsController'>
+    <div ng-model='productModel'>
+    <p>Products Controller</p>
+    <br>
+      Product Name
+      <input type="text" name = 'name' ng-model='productModel.name'><br>
+      Price
+      <input type="text" name = 'price' ng-model='productModel.price'><br>
+
+      <button type='button' ng-click ="addProduct()" >
+      Create Product
+      </button>
+    <br>
+    </div>
+    <div>
+    <table style="width:70%">
+    <tr>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+    <tr ng-repeat="product in products ">
+      <td >
+        {{ product.name }}
+      </td>
+      <td>
+        {{ product.price }}
+      </td>
+      <td>
+        <button type='button' ng-click ="deleteProduct(product)" >Delete Product</button>
+      </td>
+    </tr>
+  </table>
+  </div>
+
+
+</body>
+</html>
