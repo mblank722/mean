@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title></title>
+  <title>Filters</title>
   <script src='bower_components/angular/angular.js'></script>
   <script type='text/javascript'>
     var myApp = angular.module('myApp', []);
@@ -25,7 +25,7 @@
     <div ng-controller='friendsController'>
       Search Friends: <input type="text" ng-model="filter_name">
       <ul>
-        <li ng-repeat="friend in friends | filter:filter_name orderBy:'name'">
+        <li ng-repeat="friend in friends| filter:filter_name | orderBy:'name'">
           {{ friend.name }} - age {{ friend.age | number:0 }}, gender {{ friend.gender | uppercase }}
         </li>
       </ul>

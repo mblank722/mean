@@ -1,0 +1,57 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Controlling Users</title>
+  <script src='bower_components/angular/angular.js'></script>
+
+  <script type='text/javascript'>
+    var myApp = angular.module('myApp', []);
+
+    myApp.controller('usersController', function ($scope){
+      $scope.users=[
+        {first_name: 'Yukihiro', last_name: 'Matsumoto', language: 'Ruby'},
+        {first_name: 'Ryan', last_name: 'Dahl,', language: 'JavaScript'},
+        {first_name: 'Yukihiro', last_name: 'Eich', language: 'JavaScript'}
+                    ];
+      $scope.addUser=function(){
+        $scope.users.push($scope.userModel);
+        $scope.userModel = {};
+        console.log("list users: ", $scope.users);
+      }
+
+      $scope.deleteUser = function(userToDelete){
+            $scope.users = $scope.users.filter( function(user){
+              return user !== userToDelete;
+           })
+           console.log("delete user: " , userToDelete );
+           console.log("list users: ", $scope.users);
+      }
+    })
+  </script>
+</head>
+
+<body ng-app='myApp'>
+  <div ng-controller='usersController'>
+    <p>Users Controller<br></p>
+    First Name
+    <input type="text" name = 'first_name' ng-model='userModel.first_name'><br>
+    Last Name
+    <input type="text" name = 'last_name' ng-model='userModel.last_name'><br>
+    Favorite Language
+    <input type="text" name = 'language' ng-model='userModel.language'><br>
+
+    <button type-'button'   ng-click ="addUser()" >Create User</button>
+    <br>
+
+  <div>
+    <ul>
+      <p></p>
+      <li ng-repeat="user in users ">
+        fn {{ user.first_name }}, ln {{ user.last_name }},  language {{ user.language }}
+        <button type-'button'   ng-click ="deleteUser(user)" >Delete User</button>
+        <br>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
